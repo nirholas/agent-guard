@@ -1,0 +1,6 @@
+node_modules/
+*.vault
+agent-guard.json
+agent-guard-audit.jsonl
+AGENT_GUARD_KILL
+.env

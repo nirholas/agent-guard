@@ -1,0 +1,5 @@
+Contact: https://github.com/nirholas/agent-guard/security/advisories/new
+Expires: 2027-10-10T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://nirholas.github.io/agent-guard/.well-known/security.txt
+Policy: https://github.com/nirholas/agent-guard/blob/main/SECURITY.md

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>agent-guard: a local guard for always-on AI agents</title>
+<meta name="description" content="A zero-dependency local proxy that holds your API keys, blocks prompt injection and secret leaks, logs every call in a tamper-evident chain, and gives you a kill switch.">
+<link rel="canonical" href="https://nirholas.github.io/agent-guard/">
+<meta property="og:title" content="agent-guard: a local guard for always-on AI agents">
+<meta property="og:description" content="Credential vault, prompt-injection scanner, secret-leak blocker, hash-chained audit log and a kill switch. Zero dependencies.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nirholas.github.io/agent-guard/">
+<meta property="og:image" content="https://nirholas.github.io/agent-guard/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://nirholas.github.io/agent-guard/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"agent-guard","description":"A local guard and egress proxy for always-on AI agents.","codeRepository":"https://github.com/nirholas/agent-guard","programmingLanguage":"JavaScript","runtimePlatform":"Node.js 20+","license":"https://opensource.org/licenses/MIT","author":{"@type":"Person","name":"nirholas","url":"https://github.com/nirholas"},"keywords":"ai agents, prompt injection, egress proxy, audit log, kill switch"}
+</script>
+<style>
+:root{--bg:#0b0d10;--fg:#e8ecf1;--mute:#98a2b0;--card:#14181d;--line:#232a33;--acc:#5eead4;--acc2:#38bdf8}
+@media (prefers-color-scheme:light){:root{--bg:#fbfcfd;--fg:#10151b;--mute:#566170;--card:#fff;--line:#dfe5ec;--acc:#0f766e;--acc2:#0369a1}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--acc2)}a:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-weight:700;letter-spacing:-.02em}
+nav a{margin-left:18px;color:var(--mute);text-decoration:none}nav a:hover{color:var(--fg)}
+.hero{padding:56px 0 40px}
+h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.1;margin:0 0 16px;letter-spacing:-.03em}
+h1 span{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:1.2rem;color:var(--mute);max-width:44rem}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{padding:11px 18px;border-radius:10px;border:1px solid var(--line);text-decoration:none;color:var(--fg);transition:transform .15s,border-color .15s}
+.btn:hover{transform:translateY(-1px);border-color:var(--acc)}
+.btn.primary{background:var(--acc);color:#04201c;border-color:var(--acc);font-weight:600}
+pre{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;overflow:auto;font:14px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:24px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card h3{margin:0 0 6px;font-size:1.05rem}.card p{margin:0;color:var(--mute);font-size:.95rem}
+h2{font-size:1.6rem;margin:56px 0 8px;letter-spacing:-.02em}
+.flow{font-family:ui-monospace,Menlo,monospace;font-size:13px;white-space:pre;overflow:auto}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0;color:var(--mute);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="logo">agent-guard</div><nav aria-label="Primary"><a href="https://github.com/nirholas/agent-guard/blob/main/README.md">Docs</a><a href="https://github.com/nirholas/agent-guard/blob/main/docs/threat-model.md">Threat model</a><a href="llms.txt">llms.txt</a><a href="https://github.com/nirholas/agent-guard">GitHub</a></nav></header>
+<main>
+<section class="hero">
+<h1>Put a <span>guard</span> between your always-on agent and the internet.</h1>
+<p class="lead">A local proxy that holds your API keys, blocks prompt injection and secret leaks, records every call in a tamper-evident chain, and gives you one switch that stops everything. No dependencies. Works with any agent that can change a base URL.</p>
+<div class="cta"><a class="btn primary" href="#quickstart">Quick start</a><a class="btn" href="https://github.com/nirholas/agent-guard">View on GitHub</a></div>
+</section>
+
+<section aria-labelledby="how"><h2 id="how">How it works</h2>
+<pre class="flow" aria-label="Request flow diagram">agent --(client token)--> agent-guard --(real key injected)--> api.provider.com
+                              |   ^
+                              |   '-- response scanned for prompt injection
+                              |-- request scanned for secrets
+                              |-- rate limit, host allow list, kill switch
+                              '-- hash-chained audit log</pre></section>
+
+<section aria-labelledby="features"><h2 id="features">What you get</h2>
+<div class="grid">
+<div class="card"><h3>Credential vault</h3><p>Keys sit encrypted (AES-256-GCM, scrypt) and are injected on the way out. The agent holds only a rotatable token.</p></div>
+<div class="card"><h3>Injection scanner</h3><p>Responses and streams are checked for override phrases, fake system tags, hidden Unicode and exfiltration requests.</p></div>
+<div class="card"><h3>Secret-leak blocker</h3><p>Outbound bodies are scanned for key shapes and for every value in your vault. A match is refused.</p></div>
+<div class="card"><h3>Kill switch</h3><p>One file stops every request, even if the process is wedged. Also available over the admin API.</p></div>
+<div class="card"><h3>Tamper-evident audit</h3><p>Each log line carries the hash of the one before it. <code>audit verify</code> proves nothing was edited or removed.</p></div>
+<div class="card"><h3>Allow-listed egress</h3><p>CONNECT tunnels reach only hosts you name, only with a token, and every attempt is logged.</p></div>
+</div></section>
+
+<section id="quickstart" aria-labelledby="qs"><h2 id="qs">Quick start</h2>
+<pre><code>npm install -g @nirholas/agent-guard
+export AGENT_GUARD_PASSPHRASE='a long passphrase'
+agent-guard init
+agent-guard vault set anthropic_key
+agent-guard start
+
+export ANTHROPIC_BASE_URL=http://127.0.0.1:8787/u/anthropic
+export ANTHROPIC_API_KEY=&lt;client token from init&gt;</code></pre>
+<p>Full steps, the config reference and container setups are in the <a href="https://github.com/nirholas/agent-guard/blob/main/README.md">README</a>.</p></section>
+
+<section aria-labelledby="limits"><h2 id="limits">Honest about limits</h2>
+<p>Pattern scanning catches common attacks, not every attack. An agent that can open its own sockets can skip a proxy unless the network forces it through. Read the <a href="https://github.com/nirholas/agent-guard/blob/main/docs/threat-model.md">threat model</a> before you rely on it.</p></section>
+</main>
+<footer>MIT licensed. Built by <a href="https://github.com/nirholas">nirholas</a>. Agents: see <a href="llms.txt">llms.txt</a> and <a href="https://github.com/nirholas/agent-guard/blob/main/AGENTS.md">AGENTS.md</a>.</footer>
+</div>
+</body>
+</html>

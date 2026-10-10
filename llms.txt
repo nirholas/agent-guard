@@ -1,0 +1,21 @@
+# agent-guard
+
+> A zero-dependency local guard and egress proxy for always-on AI agents. It holds API keys in an encrypted vault, injects them on the way out, scans responses for prompt injection, blocks secrets from leaving, records every call in a hash-chained audit log, and has a file-based kill switch.
+
+Install: `npm install -g @nirholas/agent-guard`. Requires Node 20+. License MIT.
+
+## Docs
+
+- [README](https://github.com/nirholas/agent-guard/blob/main/README.md): overview, quick start, commands, library use, limits
+- [Configuration](https://github.com/nirholas/agent-guard/blob/main/docs/configuration.md): every config key, routes, error codes, audit format
+- [Integrations](https://github.com/nirholas/agent-guard/blob/main/docs/integrations.md): SDK base URLs, MCP servers, containers, token rotation
+- [Threat model](https://github.com/nirholas/agent-guard/blob/main/docs/threat-model.md): what it defends against and what it does not
+- [AGENTS.md](https://github.com/nirholas/agent-guard/blob/main/AGENTS.md): rules and setup steps for coding agents
+- [Security policy](https://github.com/nirholas/agent-guard/blob/main/SECURITY.md)
+
+## Source
+
+- [Proxy](https://github.com/nirholas/agent-guard/blob/main/src/proxy.js)
+- [Scanners](https://github.com/nirholas/agent-guard/blob/main/src/scanner.js)
+- [Vault](https://github.com/nirholas/agent-guard/blob/main/src/vault.js)
+- [Audit log](https://github.com/nirholas/agent-guard/blob/main/src/audit.js)

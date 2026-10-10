@@ -1,0 +1,21 @@
+{
+  "name": "@nirholas/agent-guard",
+  "version": "0.1.0",
+  "description": "A local guard and egress proxy for always-on AI agents: credential vault, prompt-injection scanner, secret-leak blocker, hash-chained audit log and a kill switch. Zero dependencies.",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": { "agent-guard": "bin/agent-guard.js" },
+  "exports": { ".": "./src/index.js" },
+  "files": ["src", "bin", "docs", "llms.txt", "AGENTS.md", "SECURITY.md"],
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "start": "node bin/agent-guard.js start"
+  },
+  "keywords": ["ai-agents", "agent-security", "prompt-injection", "egress-proxy", "mcp", "llm-security", "audit-log", "credential-vault", "kill-switch", "guardrails", "agentic", "ai-safety"],
+  "repository": { "type": "git", "url": "git+https://github.com/nirholas/agent-guard.git" },
+  "homepage": "https://nirholas.github.io/agent-guard/",
+  "bugs": { "url": "https://github.com/nirholas/agent-guard/issues" },
+  "author": "nirholas",
+  "license": "MIT"
+}
