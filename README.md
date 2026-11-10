@@ -169,3 +169,13 @@ Coding agents and LLM tooling can read this repo directly: [AGENTS.md](./AGENTS.
 [![Star History Chart](https://api.star-history.com/svg?repos=nirholas/agent-guard&type=Date)](https://www.star-history.com/#nirholas/agent-guard&Date)
 
 <!-- /three.ws:growth -->
+
+<!-- nirholas:watermark -->
+
+---
+
+<p align="center">
+  Built by <a href="https://github.com/nirholas"><b>nirholas</b></a> · <a href="https://x.com/nichxbt">@nichxbt</a> · <a href="https://github.com/nirholas">github.com/nirholas</a>
+</p>
+
+<!-- /nirholas:watermark -->
