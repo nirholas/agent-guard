@@ -2,9 +2,18 @@
   "name": "agent-guard",
   "version": "0.1.0",
   "description": "Set up and operate agent-guard, a local egress proxy with a key vault, prompt-injection scanner, leak blocker, audit log and kill switch for AI agents.",
-  "author": {"name": "nirholas"},
+  "author": {
+    "name": "nirholas"
+  },
   "repository": "https://github.com/nirholas/agent-guard",
+  "homepage": "https://nirholas.github.io/agent-guard/",
   "license": "MIT",
-  "keywords": ["agent-security", "prompt-injection", "egress-proxy", "credential-vault", "audit-log", "kill-switch"],
-  "homepage": "https://nirholas.github.io/agent-guard/"
+  "keywords": [
+    "agent-security",
+    "prompt-injection",
+    "egress-proxy",
+    "credential-vault",
+    "audit-log",
+    "kill-switch"
+  ]
 }
